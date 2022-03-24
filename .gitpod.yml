@@ -1,15 +1,15 @@
 image:
   file: .gitpod.Dockerfile
-task:
- - init: make init
- - command: hugo server --baseUrl $(gp url 1313) --appendPort=false
-   name: hugo
-   openMode: tab-before
- 
 
-ports: 
- - port: 1313
- - onOPen: open-preview 
+tasks:
+  - init: make init
+  - command: hugo server --baseUrl $(gp url 1313) --appendPort=false
+    name: Hugo
+    openMode: tab-before
+
+ports:
+  - port: 1313
+    onOpen: open-preview
  
 tasks:
   - init: |
