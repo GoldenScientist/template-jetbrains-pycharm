@@ -1,6 +1,7 @@
 image:
   file: .gitpod.Dockerfile
-
+  
+image: node:latest
 tasks:
   - init: |
       sudo docker pull registry.jetbrains.team/p/prj/containers/projector-pycharm-c
@@ -18,5 +19,3 @@ ports:
   - port: 8887
     visibility: private
     onOpen: open-browser
-  - port: 1313
-    onOpen: open-preview
