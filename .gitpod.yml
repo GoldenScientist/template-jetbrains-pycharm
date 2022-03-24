@@ -1,7 +1,16 @@
 image:
   file: .gitpod.Dockerfile
+task:
+ - init: make init
+ - command: hugo server --baseUrl $(gp url 1313) --appendPort=false
+   name: hugo
+   openMode: tab-before
+ 
 
-
+ports: 
+ - port: 1313
+ - onOPen: open-preview 
+ 
 tasks:
   - init: |
       sudo docker pull registry.jetbrains.team/p/prj/containers/projector-pycharm-c
@@ -15,6 +24,7 @@ tasks:
       make pr
       # Professional Edition
       #sudo docker run --rm -p 8887:8887 -v /workspace/template-jetbrains-pycharm/.jetbrains:/home/projector-user -it registry.jetbrains.team/p/prj/containers/projector-pycharm-p
+
 
 ports:
   - port: 8887
