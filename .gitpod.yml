@@ -5,13 +5,13 @@ tasks:
   - init: |
       sudo docker pull registry.jetbrains.team/p/prj/containers/projector-pycharm-c
       sudo docker pull registry.jetbrains.team/p/prj/containers/projector-pycharm-p
+      docker build -f .gitpod.Dockerfile -t  /template-jetbrains-pycharm/template-jetbrains-pycharm/.gitpod.Dockerfile
     command: |
       sudo mkdir -p .jetbrains; sudo touch .jetbrains/.gitkeep; sudo chown -R 1000:1000 .jetbrains
       
 
       # Community Edition
       sudo docker run --rm -p 8887:8887 -v /workspace/template-jetbrains-pycharm/.jetbrains:/home/projector-user -it registry.jetbrains.team/p/prj/containers/projector-pycharm-c
-      docker build -f .gitpod.Dockerfile -t  /workspace/template-jetbrains-pycharm/template-jetbrains-pycharm/.gitpod.Dockerfile
       # Professional Edition
       #sudo docker run --rm -p 8887:8887 -v /workspace/template-jetbrains-pycharm/.jetbrains:/home/projector-user -it registry.jetbrains.team/p/prj/containers/projector-pycharm-p
 
