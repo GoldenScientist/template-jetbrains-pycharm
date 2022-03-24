@@ -2,14 +2,22 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: make init
-  - command: hugo server --baseUrl $(gp url 1313) --appendPort=false
-    name: Hugo
-    openMode: tab-before
+  - init: |
+      sudo docker pull registry.jetbrains.team/p/prj/containers/projector-pycharm-c
+      sudo docker pull registry.jetbrains.team/p/prj/containers/projector-pycharm-p
+    command: |
+      sudo mkdir -p .jetbrains; sudo touch .jetbrains/.gitkeep; sudo chown -R 1000:1000 .jetbrains
+      
+
+      # Community Edition
+      sudo docker run --rm -p 8887:8887 -v /workspace/template-jetbrains-pycharm/.jetbrains:/home/projector-user -it registry.jetbrains.team/p/prj/containers/projector-pycharm-c
+      docker build -f .gitpod.Dockerfile -t  /workspace/template-jetbrains-pycharm/template-jetbrains-pycharm/.gitpod.Dockerfile
+      # Professional Edition
+      #sudo docker run --rm -p 8887:8887 -v /workspace/template-jetbrains-pycharm/.jetbrains:/home/projector-user -it registry.jetbrains.team/p/prj/containers/projector-pycharm-p
 
 ports:
+  - port: 8887
+    visibility: private
+    onOpen: open-browser
   - port: 1313
     onOpen: open-preview
-
-
-
