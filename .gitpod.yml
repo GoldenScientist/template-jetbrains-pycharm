@@ -1,3 +1,10 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: make pr
+
+
 tasks:
   - init: |
       sudo docker pull registry.jetbrains.team/p/prj/containers/projector-pycharm-c
